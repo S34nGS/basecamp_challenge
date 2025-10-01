@@ -8,24 +8,57 @@ def clear():
 
 clear()
 
-print("""
-Welcome to Prison Escape!
-""")
+# print("""
+# Welcome to Prison Escape!
+# """)
 
-# Give the option of starting the game
+# # Give the option of starting the game
+# while True:
+#     start_choice = input('Do you want to start the game Y/n: ')
+#     start_choice_lower = start_choice.strip().lower()
+#     if start_choice_lower == 'n':
+#         clear()
+#         print('Goodbye!')
+#         break
+#     elif start_choice_lower in ('y', ''):
+#         clear()
+#         playing = True
+#         break
+#     else:
+#         print('Choose a valid option')
+
+
+
 while True:
-    start_choice = input('Do you want to start the game Y/n: ')
-    start_choice_lower = start_choice.strip().lower()
-    if start_choice_lower == 'n':
-        clear()
-        print('Goodbye!')
-        break
-    elif start_choice_lower in ('y', ''):
+    print("""
+----------------------------
+        PRISON ESCAPE  
+----------------------------
+        1. Start
+        2. Info
+        3. Exit
+    """)
+    choice = input("Type een nummer in: ")
+
+    if choice == "1":
         clear()
         playing = True
         break
+    elif choice == "2":
+        clear()
+        print("""
+Het spel gaat over een persoon die vastzit in een gevangenis.
+Het doel is om een aantal levels te voltooien en 
+om vijanden die je tegenkomt in de gevangenis te verslaan. 
+Waardoor je uitenedlijk kunt onstnappen 
+        """)
+    elif choice == "3":
+        clear()
+        print('Je hebt het spel verlaten.')
+        break
     else:
-        print('Choose a valid option')
+        clear()
+        print("Keuze is niet valide, probeer opnieuw.")
 
 
 while playing:
