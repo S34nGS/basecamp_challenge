@@ -8,27 +8,8 @@ def clear():
 
 clear()
 
-# print("""
-# Welcome to Prison Escape!
-# """)
 
-# # Give the option of starting the game
-# while True:
-#     start_choice = input('Do you want to start the game Y/n: ')
-#     start_choice_lower = start_choice.strip().lower()
-#     if start_choice_lower == 'n':
-#         clear()
-#         print('Goodbye!')
-#         break
-#     elif start_choice_lower in ('y', ''):
-#         clear()
-#         playing = True
-#         break
-#     else:
-#         print('Choose a valid option')
-
-
-
+# Main menu
 while True:
     print("""
 ----------------------------
@@ -61,6 +42,8 @@ Waardoor je uitenedlijk kunt onstnappen
         print("Keuze is niet valide, probeer opnieuw.")
 
 
+
+# Running game
 while playing:
     print("""
 You wake up confused.
