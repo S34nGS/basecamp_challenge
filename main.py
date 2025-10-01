@@ -1,6 +1,12 @@
 import os
+import random
+import story
+import enemy1
+import enemy2
 
 playing = False
+battle = False
+step = 0
 
 # Clear screen function
 def clear():
@@ -43,14 +49,23 @@ Waardoor je uitenedlijk kunt onstnappen
 
 
 
-# Running game
-while playing:
-    print("""
-You wake up confused.
-Your eyes slowly open...
-Around you is a prison...
-Why???
+while True:
+    if playing:
+        print(story.storyline[step])
+        a = input("a")
+        if a == "y":
+            step += 1
+            battle = True
+            playing = False
 
-You have to escape!
-    """)
-    a = input("a")
+
+    elif battle:
+        print("Boohahaha")
+        b = input("b")
+        if b == "y":
+            playing = True
+            battle = False
+
+            
+    else:
+        break
