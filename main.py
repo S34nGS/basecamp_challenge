@@ -1,12 +1,17 @@
 import os
 import random
 import story
+from battle import run_battle
+import player
 import enemy1
 import enemy2
 
 playing = False
 battle = False
 step = 0
+enemy_step = 0
+
+enemies = [enemy1, enemy2]
 
 # Clear screen function
 def clear():
@@ -48,24 +53,25 @@ Waardoor je uitenedlijk kunt onstnappen
         print("Keuze is niet valide, probeer opnieuw.")
 
 
-
+# Main game loop
 while True:
+    # Storyline loop
     if playing:
         print(story.storyline[step])
         a = input("a")
         if a == "y":
+            clear()
             step += 1
             battle = True
             playing = False
 
-
+    # Battle loop
     elif battle:
-        print("Boohahaha")
-        b = input("b")
-        if b == "y":
+        run_battle(player, enemies[enemy_step])
+        if run_battle(player, enemies[enemy_step]) == False:
+            enemy_step += 1
             playing = True
             battle = False
 
-            
     else:
         break
