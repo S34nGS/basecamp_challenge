@@ -45,12 +45,5 @@ Waardoor je uitenedlijk kunt onstnappen
 
 # Running game
 while playing:
-    print("""
-You wake up confused.
-Your eyes slowly open...
-Around you is a prison...
-Why???
-
-You have to escape!
-    """)
+   
     a = input("a")
