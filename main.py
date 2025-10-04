@@ -1,5 +1,4 @@
 import os
-import random
 import story
 from battle import run_battle
 import player
@@ -68,10 +67,16 @@ while True:
     # Battle loop
     elif battle:
         run_battle(player, enemies[enemy_step])
-        if run_battle(player, enemies[enemy_step]) == False:
+        if run_battle(player, enemies[enemy_step]) == "Win":
+            clear()
+            print("You have beaten the enemy")
             enemy_step += 1
             playing = True
             battle = False
+        elif run_battle(player, enemies[enemy_step]) == "Lose":
+            clear()
+            print("You died :(")
+            break
 
     else:
         break

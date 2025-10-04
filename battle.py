@@ -7,9 +7,9 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def run_battle(p, e):
-    print("""
-        1. Light attack
-        2. Heavy attack
+    print(f"""
+        1. Light attack {p.light_attack_pp}
+        2. Heavy attack {p.heavy_attack_pp}
         3. Defend
     """)
     print(f"""
@@ -26,25 +26,33 @@ def run_battle(p, e):
     # The results of the player's choice
     # The player chose light attack
     if player_choice == "1":
-        if enemy_choice == "3" and e.defense > p.light_attack:
-            print("The defense of the enemy is too strong")
-        elif enemy_choice == "3" and e.defense < p.light_attack:
-            e.health -= (p.light_attack - e.defense)
-            print(f"You dealth {p.light_attack - e.defense} damage to the enemy")
+        if p.light_attack_pp > 0:
+            p.light_attack_pp -= 1
+            if enemy_choice == "3" and e.defense > p.light_attack:
+                print("The defense of the enemy is too strong")
+            elif enemy_choice == "3" and e.defense < p.light_attack:
+                e.health -= (p.light_attack - e.defense)
+                print(f"You dealth {p.light_attack - e.defense} damage to the enemy")
+            else:
+                e.health -= p.light_attack
+                print(f"You dealth {p.light_attack} damage to the enemy")
         else:
-            e.health -= p.light_attack
-            print(f"You dealth {p.light_attack} damage to the enemy")
+            print("You can't do that attack anymore")
 
     # The player chose heavy attack
     elif player_choice == "2":
-        if enemy_choice == "3" and e.defense > p.heavy_attack:
-            print("The defense of the enemy is too strong")
-        elif enemy_choice == "3" and e.defense < p.heavy_attack:
-            e.health -= (p.heavy_attack - e.defense)
-            print(f"You dealth {p.heavy_attack - e.defense} damage to the enemy")
+        if p.heavy_attack_pp > 0:
+            p.heavy_attack_pp -= 1
+            if enemy_choice == "3" and e.defense > p.heavy_attack:
+                print("The defense of the enemy is too strong")
+            elif enemy_choice == "3" and e.defense < p.heavy_attack:
+                e.health -= (p.heavy_attack - e.defense)
+                print(f"You dealth {p.heavy_attack - e.defense} damage to the enemy")
+            else:
+                e.health -= p.heavy_attack
+                print(f"You dealth {p.heavy_attack} damage to the enemy")
         else:
-            e.health -= p.heavy_attack
-            print(f"You dealth {p.heavy_attack} damage to the enemy")
+            print("You can't do that attack anymore")
     
     # The player chose to defend
     elif player_choice == "3":
@@ -108,10 +116,6 @@ def run_battle(p, e):
             print("The enemy chose to defend")
 
     if p.health <= 0:
-        clear()
-        print("You died :(")
-        return False
+        return "Lose"
     elif e.health <= 0:
-        clear()
-        print("You have beaten the enemy")
-        return False
+        return "Win"
