@@ -5,5 +5,7 @@ light_attack = 5
 
 defense = 30
 
-heavy_attack_pp = 2
+heavy_attack_pp = 15
 light_attack_pp = 30
+
+inventory = []

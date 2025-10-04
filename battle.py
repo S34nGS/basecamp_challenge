@@ -8,14 +8,23 @@ def clear():
 
 def run_battle(p, e):
     print(f"""
-        1. Light attack {p.light_attack_pp}
-        2. Heavy attack {p.heavy_attack_pp}
-        3. Defend
+Player health:  [{"#" * (p.health // 3)}]
+Enemy health:   [{"#" * (e.health // 3)}]
     """)
-    print(f"""
-        Player health:  {p.health}
-        Enemy health:   {e.health}
-    """)
+
+    if len(p.inventory) == 0:
+        print(f"""
+1. Light attack: {p.light_attack_pp}
+2. Heavy attack: {p.heavy_attack_pp}
+3. Defend
+        """)
+    elif len(p.inventory) == 1:
+        print(f"""
+1. Light attack: {p.light_attack_pp}
+2. Heavy attack: {p.heavy_attack_pp}
+3. Defend
+4. {p.inventory[0].name}
+        """)
 
     player_choice = input("Choose an option: ")
     enemy_options = ["1", "2", "3"]
@@ -71,8 +80,47 @@ def run_battle(p, e):
         if enemy_choice == "3":
             print("You chose to defend")
 
+    # The player chose to use the weapon
+    elif player_choice == "4" and len(p.inventory) == 1:
+        if p.inventory[0].durability > 0:
+            # If the chosen weapon is a shuriken the amount of shurikens thrown is randomized between 1 and 3
+            if p.inventory[0].name == "Shuriken":
+                randomized_number = random.randint(1, 3)
+                shuriken_damage = p.inventory[0].damage * randomized_number
+                p.inventory[0].durability -= randomized_number
+                print(f"You threw {randomized_number} shurikens")
+                if enemy_choice == "3" and e.defense > shuriken_damage:
+                    print("The defense of the enemy is too strong")
+                elif enemy_choice == "3" and e.defense < shuriken_damage:
+                    e.health -= (shuriken_damage - e.defense)
+                    print(f"You dealth {shuriken_damage - e.defense} damage to the enemy")
+                else:
+                    e.health -= shuriken_damage
+                    print(f"You dealth {shuriken_damage} damage to the enemy")
+            
+            # If a weapon besides the shuriken was chosen the logic goes on normally
+            else:
+                p.inventory[0].durability -= 1
+                if enemy_choice == "3" and e.defense > p.inventory[0].damage:
+                    print("The defense of the enemy is too strong")
+                elif enemy_choice == "3" and e.defense < p.inventory[0].damage:
+                    e.health -= (p.inventory[0].damage - e.defense)
+                    print(f"You dealth {p.inventory[0].damage - e.defense} damage to the enemy")
+                else:
+                    e.health -= p.inventory[0].damage
+                    print(f"You dealth {p.inventory[0].damage} damage to the enemy")
+
+        else:
+            # When the durability of a weapon reaches 0 the weapon gets removed from inventory
+            p.inventory.pop(0)
+            print("Your weapon broke")
+
     else:
         print("Pick a valid option")
+
+
+
+
 
 
     # The results of the enemy's choice
