@@ -2,8 +2,7 @@ import os
 import story
 from battle import run_battle
 import player
-import enemy1
-import enemy2
+from enemies import enemy1, enemy2
 from weapons import knife, rock, shuriken
 
 playing = False
