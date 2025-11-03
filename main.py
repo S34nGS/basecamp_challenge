@@ -1,16 +1,30 @@
 import os
 import story
 from battle import run_battle
-import player
-from enemies import enemy1, enemy2
-from weapons import knife, rock, shuriken
+
+# Import classes
+from player import Player
+from enemy import Enemy
+from weapon import Weapon
+
+# Player
+player = Player(100, 20, 5, 30, 15, 30, [])
+
+# Weapons
+knife = Weapon("Knife", 50, 5)
+rock = Weapon("Rock", 30, 20)
+shuriken = Weapon("Shuriken", 15, 20)
+
+# Enemies
+enemy1 = Enemy(100, 20, 5, 30)
+enemy2 = Enemy(150, 30, 10, 50)
+enemies = [enemy1, enemy2]
 
 playing = False
 battle = False
 story_step = 0
 enemy_step = 0
 
-enemies = [enemy1, enemy2]
 
 # Clear screen function
 def clear():
