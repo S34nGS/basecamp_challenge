@@ -1,5 +1,5 @@
 class Enemy:
-    def __init__(self, health, heavy_attack, light_attack, defense):
+    def __init__(self, health: int, heavy_attack: int, light_attack: int, defense: int):
         self.health = health
         self.heavy_attack = heavy_attack
         self.light_attack = light_attack
