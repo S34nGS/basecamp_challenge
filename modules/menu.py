@@ -1,17 +1,17 @@
-from tools.clear import clear
+from modules.clear import clear
 import textwrap
 
 
 def menu():
     while True:
-        print("""
-    ----------------------------
-            PRISON ESCAPE
-    ----------------------------
-            1. Start
-            2. Info
-            3. Exit
-        """)
+        print(textwrap.dedent("""
+            ----------------------------
+                    PRISON ESCAPE
+            ----------------------------
+                    1. Start
+                    2. Info
+                    3. Exit
+        """))
         choice = input("Enter a number: ")
 
         if choice == "1":

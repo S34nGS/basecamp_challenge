@@ -1,5 +1,5 @@
-from tools.clear import clear
-from tools.menu import menu
+from modules.clear import clear
+from modules.menu import menu
 from battle import run_battle
 import textwrap
 import story
@@ -10,17 +10,17 @@ from classes.enemy import Enemy
 from classes.weapon import Weapon
 
 # Player
-player = Player(100, 20, 5, 30, 15, 30, [])
-
-# Weapons
-knife = Weapon("Knife", 50, 5)
-rock = Weapon("Rock", 30, 20)
-shuriken = Weapon("Shuriken", 15, 20)
+player = Player(100, 20, 5, 15, 15, 30, [])
 
 # Enemies
 enemy1 = Enemy(100, 20, 5, 30)
 enemy2 = Enemy(150, 30, 10, 50)
 enemies = [enemy1, enemy2]
+
+# Weapons
+knife = Weapon("Knife", 50, 5)
+rock = Weapon("Rock", 30, 20)
+shuriken = Weapon("Shuriken", 15, 20)
 
 # Clean terminal for start of game
 clear()
@@ -60,6 +60,7 @@ def main():
                         player.health = 100
                         print("You have regained your full health")
                     elif left_right_decision == "right":
+                        # TODO Create module for armory
                         clear()
                         print(textwrap.dedent("""
                             You have the choice between three different weapons: Rock, Shuriken, Knife.
@@ -82,7 +83,7 @@ def main():
                     else:
                         story_step = 7
                         clear()
-                        print("Pick a valid option")
+                        print("Pick either left or right")
 
             else:
                 clear()

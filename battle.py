@@ -1,11 +1,13 @@
 import random
 import textwrap
-from tools.clear import clear
-from tools.battle_move import battle_move
+from modules.clear import clear
+from modules.battle_move import battle_move
 
+# TODO pp doesn't go down
 
-def run_battle(player: str, enemy):
+def run_battle(player, enemy):
     print(textwrap.dedent(f"""
+        {player.health}
         Player health:  [{"#" * (player.health // 3)}]
         Enemy health:   [{"#" * (enemy.health // 3)}]
     """))
