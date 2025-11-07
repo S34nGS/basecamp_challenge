@@ -1,5 +1,6 @@
 import os
 import story
+# from old_battle import run_battle
 from battle import run_battle
 
 # Import classes
@@ -20,6 +21,7 @@ enemy1 = Enemy(100, 20, 5, 30)
 enemy2 = Enemy(150, 30, 10, 50)
 enemies = [enemy1, enemy2]
 
+# Game variables
 playing = False
 battle = False
 story_step = 0
@@ -30,6 +32,7 @@ enemy_step = 0
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 clear()
 
 
@@ -37,7 +40,7 @@ clear()
 while True:
     print("""
 ----------------------------
-        PRISON ESCAPE  
+        PRISON ESCAPE
 ----------------------------
         1. Start
         2. Info
@@ -54,7 +57,7 @@ while True:
         print("""
 The game is about a person who gets stuck in prison.
 Throughout the game you'll encounter enemies and decisions that will ensure or ruin your escape.
-              
+
 If you manage to beat everyone you'll achieve your goal of freedom.
 
 Or will you...
@@ -110,7 +113,7 @@ Choose wisely as some weapons do more damage but may degrade faster.
                     story_step = 7
                     clear()
                     print("Pick a valid option")
-                    
+
         else:
             clear()
 
