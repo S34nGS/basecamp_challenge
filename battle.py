@@ -3,7 +3,6 @@ import textwrap
 from modules.clear import clear
 from modules.battle_move import battle_move
 
-# TODO pp doesn't go down
 
 def run_battle(player, enemy):
     print(textwrap.dedent(f"""

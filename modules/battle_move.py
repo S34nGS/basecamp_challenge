@@ -1,7 +1,9 @@
 import random
 
+# TODO pp doesn't go down because player_pp is a local variable instead of the actual object data
 
-def battle_move(player: str, enemy: str, player_choice: str, enemy_choice: str) -> None:
+
+def battle_move(player, enemy, player_choice: str, enemy_choice: str) -> None:
     player_dict = {
         "1": [player.light_attack, player.light_attack_pp],
         "2": [player.heavy_attack, player.heavy_attack_pp],

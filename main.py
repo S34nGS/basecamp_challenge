@@ -1,8 +1,11 @@
+# Import modules
 from modules.clear import clear
 from modules.menu import menu
+from modules.medic_or_armory import medic_or_armory
+
+# Import story and battle loops
+from story import storyline
 from battle import run_battle
-import textwrap
-import story
 
 # Import classes
 from classes.player import Player
@@ -22,10 +25,11 @@ knife = Weapon("Knife", 50, 5)
 rock = Weapon("Rock", 30, 20)
 shuriken = Weapon("Shuriken", 15, 20)
 
-# Clean terminal for start of game
-clear()
 
 def main():
+    # Clean terminal for start of game
+    clear()
+    
     # Game variables
     playing = False
     battle = False
@@ -45,7 +49,7 @@ def main():
     while True:
         # Storyline loop
         if playing:
-            print(story.storyline[story_step])
+            print(storyline[story_step])
             next = input("Press enter to continue")
             if next == "":
                 clear()
@@ -55,36 +59,11 @@ def main():
                     playing = False
                 elif story_step == 8:
                     left_right_decision = input("Do you pick left(medic) or right(armory): ").lower()
-                    if left_right_decision == "left":
-                        clear()
-                        player.health = 100
-                        print("You have regained your full health")
-                    elif left_right_decision == "right":
-                        # TODO Create module for armory
-                        clear()
-                        print(textwrap.dedent("""
-                            You have the choice between three different weapons: Rock, Shuriken, Knife.
-
-                            Choose wisely as some weapons do more damage but may degrade faster.
-                        """))
-                        weapon_decision = input("I choose: ").lower()
-                        clear()
-                        if weapon_decision == "rock":
-                            player.inventory.append(rock)
-                            print("You grabbed the rock.")
-                        elif weapon_decision == "shuriken":
-                            player.inventory.append(shuriken)
-                            print("You grabbed the shuriken.")
-                        elif weapon_decision == "knife":
-                            player.inventory.append(knife)
-                            print("You grabbed the knife.")
-                        else:
-                            print("Make a valid decision")
-                    else:
+                    result = medic_or_armory(left_right_decision, player, rock, shuriken, knife)
+                    if result == "invalid":
                         story_step = 7
                         clear()
                         print("Pick either left or right")
-
             else:
                 clear()
 
