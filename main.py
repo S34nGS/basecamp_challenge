@@ -29,7 +29,7 @@ shuriken = Weapon("Shuriken", 15, 20)
 def main():
     # Clean terminal for start of game
     clear()
-    
+
     # Game variables
     playing = False
     battle = False
@@ -89,6 +89,7 @@ def main():
 
         else:
             break
+
 
 if __name__ == "__main__":
     main()
