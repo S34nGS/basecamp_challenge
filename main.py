@@ -1,7 +1,8 @@
 # Import modules
-from modules.stat_menu import stat_menu
+from modules.menus.stat_menu import stat_menu
 from modules.clear import clear
-from modules.menu import menu
+from modules.menus.main_menu import menu
+from modules.menus.new_or_load_menu import new_or_load_menu
 from modules.medic_or_armory import medic_or_armory
 
 # Import story and battle loops
@@ -28,28 +29,54 @@ shuriken = Weapon("Shuriken", 15, 20, 20)
 
 
 def main():
-    # Clean terminal for start of game
-    clear()
-
-    # Game variables
-    playing = False
-    battle = False
-    story_step = 0
-    enemy_step = 0
-
-    # Main menu
     while True:
-        choice = stat_menu(player)
-        if choice == "start":
-            playing = True
-            break
-        elif choice == "exit":
-            break
+        # Clean terminal for start of game
+        clear()
 
-    # Main game loop
-    while True:
+        # Game variables
+        main_menu = True
+        character_creation = False
+        playing = False
+        new_or_load = False
+        battle = False
+        story_step = 0
+        enemy_step = 0
+
+        # Main menu
+        while main_menu:
+            choice = menu()
+            if choice == "start":
+                new_or_load = True
+                main_menu = False
+            elif choice == "exit":
+                break
+
+        # New or load menu loop
+        while new_or_load:
+            nol = new_or_load_menu()
+            if nol == "new":
+                clear()
+                player_name = input("What is your name: ")
+                player.name = player_name
+                character_creation = True
+                new_or_load = False
+            elif nol == "load":
+                clear()
+                playing = True
+                new_or_load = False
+            elif nol == "back":
+                main_menu = True
+                new_or_load = False
+
+        # Character creation loop
+        while character_creation:
+            stats = stat_menu(player)
+            if stats == "done":
+                character_creation = False
+                playing = True
+
         # Storyline loop
-        if playing:
+        while playing:
             print(storyline[story_step])
             next = input("Press enter to continue")
             if next == "":
@@ -69,7 +96,7 @@ def main():
                 clear()
 
         # Battle loop
-        elif battle:
+        while battle:
             run_battle(player, enemies[enemy_step])
             if run_battle(player, enemies[enemy_step]) == "Win":
                 clear()
@@ -87,9 +114,6 @@ def main():
                 clear()
                 print("You died :(")
                 break
-
-        else:
-            break
 
 
 if __name__ == "__main__":

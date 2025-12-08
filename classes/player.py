@@ -1,4 +1,5 @@
 import random
+from typing import Optional
 
 
 class Player:
@@ -15,7 +16,8 @@ class Player:
             max_light_attack_pp: int,
             inventory: list,
             stats: list,
-            stat_points: int
+            stat_points: int,
+            name: Optional[str] = None,
     ):
         self.health = health
         self.max_health = max_health
@@ -29,6 +31,7 @@ class Player:
         self.inventory = inventory
         self.stats = stats
         self.stat_points = stat_points
+        self.name = name
 
     def attack(self, enemy, enemy_choice, attack_type):
         if attack_type == "light" and self.light_attack_pp > 0:

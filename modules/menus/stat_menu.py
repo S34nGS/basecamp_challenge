@@ -14,10 +14,11 @@ def stat_menu(player):
         Available: {player.stat_points}
         """)
         selected = selection_menu(menu_items, menu_text)
-        if selected == len(stat_names - 1):
+        if selected == len(stat_names) - 1:
             player.stats = [5, 5, 5, 5]
+            player.stat_points = 10
         elif selected == len(stat_names):
-            ...
+            return "done"
         else:
             if player.stat_points > 0:
                 player.stats[selected] += 1
