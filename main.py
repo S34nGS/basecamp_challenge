@@ -1,4 +1,5 @@
 # Import modules
+from modules.stat_menu import stat_menu
 from modules.clear import clear
 from modules.menu import menu
 from modules.medic_or_armory import medic_or_armory
@@ -13,11 +14,11 @@ from classes.enemy import Enemy
 from classes.weapon import Weapon
 
 # Player
-player = Player(100, 100, 20, 5, 15, 15, 15, 30, 30, [])
+player = Player(100, 100, 20, 5, 15, 15, 15, 30, 30, [], [5, 5, 5, 5], 10)
 
 # Enemies
-enemy1 = Enemy(100, 100, 20, 5, 30)
-enemy2 = Enemy(150, 150, 30, 10, 50)
+enemy1 = Enemy(100, 100, 20, 5, 30, [6, 6, 6, 6])
+enemy2 = Enemy(150, 150, 30, 10, 50, [7, 7, 7, 7])
 enemies = [enemy1, enemy2]
 
 # Weapons
@@ -38,7 +39,7 @@ def main():
 
     # Main menu
     while True:
-        choice = menu()
+        choice = stat_menu(player)
         if choice == "start":
             playing = True
             break

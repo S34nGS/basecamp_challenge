@@ -13,7 +13,9 @@ class Player:
             max_heavy_attack_pp: int,
             light_attack_pp: int,
             max_light_attack_pp: int,
-            inventory: list
+            inventory: list,
+            stats: list,
+            stat_points: int
     ):
         self.health = health
         self.max_health = max_health
@@ -25,6 +27,8 @@ class Player:
         self.light_attack_pp = light_attack_pp
         self.max_light_attack_pp = max_light_attack_pp
         self.inventory = inventory
+        self.stats = stats
+        self.stat_points = stat_points
 
     def attack(self, enemy, enemy_choice, attack_type):
         if attack_type == "light" and self.light_attack_pp > 0:
