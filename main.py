@@ -1,13 +1,14 @@
 # Import modules
-from modules.menus.stat_menu import stat_menu
 from modules.clear import clear
+from modules.menus.stat_menu import stat_menu
 from modules.menus.main_menu import menu
 from modules.menus.new_or_load_menu import new_or_load_menu
+from modules.menus.battle_menu import battle_menu
 from modules.medic_or_armory import medic_or_armory
 
 # Import story and battle loops
 from story import storyline
-from battle import run_battle
+# from battle import run_battle
 
 # Import classes
 from classes.player import Player
@@ -72,6 +73,7 @@ def main():
         while character_creation:
             stats = stat_menu(player)
             if stats == "done":
+                clear()
                 character_creation = False
                 playing = True
 
@@ -97,8 +99,8 @@ def main():
 
         # Battle loop
         while battle:
-            run_battle(player, enemies[enemy_step])
-            if run_battle(player, enemies[enemy_step]) == "Win":
+            battle_menu(player, enemies[enemy_step])
+            if battle_menu(player, enemies[enemy_step]) == "Win":
                 clear()
                 print("You have beaten the enemy")
                 print("")
@@ -110,7 +112,7 @@ def main():
                     battle = False
                 else:
                     clear()
-            elif run_battle(player, enemies[enemy_step]) == "Lose":
+            elif battle_menu(player, enemies[enemy_step]) == "Lose":
                 clear()
                 print("You died :(")
                 break

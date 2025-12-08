@@ -1,6 +1,4 @@
-from modules.clear import clear
 from modules.menus.selection_menu import selection_menu
-import textwrap
 
 
 def new_or_load_menu():
