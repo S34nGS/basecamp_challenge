@@ -1,5 +1,5 @@
 from modules.clear import clear
-from modules.selection_menu import selection_menu
+from modules.menus.selection_menu import selection_menu
 import textwrap
 
 
