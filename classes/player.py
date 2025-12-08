@@ -5,19 +5,25 @@ class Player:
     def __init__(
             self,
             health: int,
+            max_health: int,
             heavy_attack: int,
             light_attack: int,
             defense: int,
             heavy_attack_pp: int,
+            max_heavy_attack_pp: int,
             light_attack_pp: int,
+            max_light_attack_pp: int,
             inventory: list
     ):
         self.health = health
+        self.max_health = max_health
         self.heavy_attack = heavy_attack
         self.light_attack = light_attack
         self.defense = defense
         self.heavy_attack_pp = heavy_attack_pp
+        self.max_heavy_attack_pp = max_heavy_attack_pp
         self.light_attack_pp = light_attack_pp
+        self.max_light_attack_pp = max_light_attack_pp
         self.inventory = inventory
 
     def attack(self, enemy, enemy_choice, attack_type):
@@ -68,7 +74,3 @@ class Player:
     def defend(self, enemy, enemy_choice):
         if enemy_choice != "3" and (self.defense > enemy.light_attack or self.defense > enemy.heavy_attack):
             print("You defended against the enemy")
-        elif enemy_choice != "1" and self.defense < enemy.light_attack:
-            self.health -= enemy.light_attack
-        elif enemy_choice != "2" and self.defense < enemy.heavy_attack:
-            self.health -= enemy.heavy_attack
