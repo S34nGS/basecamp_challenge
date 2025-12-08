@@ -1,7 +1,6 @@
 from modules.clear import clear
 import textwrap
 
-# TODO weapon_decision can be empty and the story will continue
 
 def medic_or_armory(decision, player, rock, shuriken, knife):
     if decision == "left":
@@ -28,6 +27,7 @@ def medic_or_armory(decision, player, rock, shuriken, knife):
             print("You grabbed the knife.")
         else:
             print("Make a valid decision")
+            return "invalid"
     else:
         clear()
         print("Pick either left or right")

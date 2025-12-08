@@ -35,5 +35,6 @@ def menu():
             clear()
             print("Choice was invalid, try again.")
 
+
 if __name__ == "__main__":
     menu()

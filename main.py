@@ -13,23 +13,23 @@ from classes.enemy import Enemy
 from classes.weapon import Weapon
 
 # Player
-player = Player(100, 20, 5, 15, 15, 30, [])
+player = Player(100, 100, 20, 5, 15, 15, 15, 30, 30, [])
 
 # Enemies
-enemy1 = Enemy(100, 20, 5, 30)
-enemy2 = Enemy(150, 30, 10, 50)
+enemy1 = Enemy(100, 100, 20, 5, 30)
+enemy2 = Enemy(150, 150, 30, 10, 50)
 enemies = [enemy1, enemy2]
 
 # Weapons
-knife = Weapon("Knife", 50, 5)
-rock = Weapon("Rock", 30, 20)
-shuriken = Weapon("Shuriken", 15, 20)
+knife = Weapon("Knife", 50, 5, 5)
+rock = Weapon("Rock", 30, 20, 20)
+shuriken = Weapon("Shuriken", 15, 20, 20)
 
 
 def main():
     # Clean terminal for start of game
     clear()
-    
+
     # Game variables
     playing = False
     battle = False
@@ -58,7 +58,7 @@ def main():
                     battle = True
                     playing = False
                 elif story_step == 8:
-                    left_right_decision = input("Do you pick left(medic) or right(armory): ").lower()
+                    left_right_decision = input("Do you pick medic(left) or armory(right): ").lower()
                     result = medic_or_armory(left_right_decision, player, rock, shuriken, knife)
                     if result == "invalid":
                         story_step = 7
@@ -89,6 +89,7 @@ def main():
 
         else:
             break
+
 
 if __name__ == "__main__":
     main()
