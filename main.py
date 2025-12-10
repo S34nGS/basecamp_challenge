@@ -50,7 +50,7 @@ def main():
                 new_or_load = True
                 main_menu = False
             elif choice == "exit":
-                break
+                return
 
         # New or load menu loop
         while new_or_load:
