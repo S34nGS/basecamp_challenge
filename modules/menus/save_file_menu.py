@@ -3,7 +3,7 @@ from classes.saves import Saves
 import textwrap
 
 
-def load_file_menu():
+def save_file_menu():
     saves = Saves()
     file1 = saves.read_save_file("saves/file1.json")
     file2 = saves.read_save_file("saves/file2.json")
@@ -15,17 +15,29 @@ def load_file_menu():
         "Back"
     )
     menu_text = textwrap.dedent("""
-        Pick a save file
+        Which file do you want to save to?
     """)
     while True:
         selected = selection_menu(menu_items, menu_text)
         if menu_items[selected] == 'Empty':
-            menu_text = "That save file is empty"
+            saves.write_save_file(f"file{selected}.json")
         elif selected == 0 and menu_items[selected] != 'Empty':
-            return "file1"
+            choice = saves.are_you_sure()
+            if choice == "yes":
+                saves.write_save_file(f"file{selected}.json")
+            elif choice == "no":
+                pass
         elif selected == 1 and menu_items[selected] != 'Empty':
-            return "file2"
+            choice = saves.are_you_sure()
+            if choice == "yes":
+                saves.write_save_file(f"file{selected}.json")
+            elif choice == "no":
+                pass
         elif selected == 2 and menu_items[selected] != 'Empty':
-            return "file3"
+            choice = saves.are_you_sure()
+            if choice == "yes":
+                saves.write_save_file(f"file{selected}.json")
+            elif choice == "no":
+                pass
         elif menu_items[selected] == "Back":
             return "back"

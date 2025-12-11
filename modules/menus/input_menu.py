@@ -37,3 +37,5 @@ def input_menu(player):
                     return "back"
             elif len(pressed) == 1 and pressed.isprintable():
                 name += pressed
+            elif pressed == key.BACKSPACE:
+                name = name[:-1]

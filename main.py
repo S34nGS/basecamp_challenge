@@ -6,16 +6,17 @@ from modules.menus.load_file_menu import load_file_menu
 from modules.menus.new_or_load_menu import new_or_load_menu
 from modules.menus.input_menu import input_menu
 from modules.menus.battle_menu import battle_menu
+from modules.menus.save_file_menu import save_file_menu
 from modules.medic_or_armory import medic_or_armory
 
-# Import story and battle loops
+# Import story loop
 from story import storyline
-# from battle import run_battle
 
 # Import classes
 from classes.player import Player
 from classes.enemy import Enemy
 from classes.weapon import Weapon
+from classes.saves import Saves
 
 # Player
 player = Player(100, 100, 20, 5, 15, 15, 15, 30, 30, [], [5, 5, 5, 5], 6)
@@ -29,6 +30,9 @@ enemies = [enemy1, enemy2]
 knife = Weapon("Knife", 50, 5, 5)
 rock = Weapon("Rock", 30, 20, 20)
 shuriken = Weapon("Shuriken", 15, 20, 20)
+
+# Saves
+saves = Saves()
 
 
 def main():
@@ -95,9 +99,7 @@ def main():
         # Load menu loop
         while load_menu:
             load_file = load_file_menu()
-            if load_file == "empty":
-                print("This is an empty save file")
-            elif load_file == "file1":
+            if load_file == "file1":
                 ...
             elif load_file == "file2":
                 ...
@@ -129,6 +131,9 @@ def main():
 
         # Battle loop
         while battle:
+            save_check = saves.want_to_save()
+            if save_check == "yes":
+                save_file_menu()
             bm = battle_menu(player, enemies[enemy_step])
             if bm == "Win":
                 clear()
