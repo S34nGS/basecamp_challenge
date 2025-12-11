@@ -9,7 +9,8 @@ def stat_menu(player):
         f"Deception     [{player.stats[2]}]",
         f"Anger         [{player.stats[3]}]",
         "Reset",
-        "Continue"
+        "Continue",
+        "Back"
     )
 
     while True:
@@ -18,11 +19,13 @@ def stat_menu(player):
         Available: {player.stat_points}
         """)
         selected = selection_menu(menu_items, menu_text)
-        if selected == 4:
+        if menu_items[selected] == "Reset":
             player.stats = [5, 5, 5, 5]
             player.stat_points = 10
-        elif selected == 5:
+        elif menu_items[selected] == "Continue":
             return "done"
+        elif menu_items[selected] == "Back":
+            return "back"
         else:
             if player.stat_points > 0:
                 player.stats[selected] += 1
