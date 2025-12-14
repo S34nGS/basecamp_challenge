@@ -13,6 +13,6 @@
     "name": "Sean",
     "heavy_attack_pp": 2,
     "light_attack_pp": 30,
-    "story_step": 10,
-    "enemy_step": 2
+    "story_step": 24,
+    "enemy_step": 3
 }

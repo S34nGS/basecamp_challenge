@@ -155,6 +155,8 @@ def main():
                         story_step = 7
                         clear()
                         print("Pick either left or right")
+                elif story_step == 25:
+                    return
             else:
                 clear()
 
