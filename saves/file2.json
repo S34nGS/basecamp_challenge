@@ -1,0 +1,18 @@
+{
+    "health": 15,
+    "max_health": 105,
+    "stats": [
+        1,
+        7,
+        1,
+        1,
+        1,
+        1
+    ],
+    "stat_points": 0,
+    "name": "Sean",
+    "heavy_attack_pp": 2,
+    "light_attack_pp": 30,
+    "story_step": 24,
+    "enemy_step": 3
+}

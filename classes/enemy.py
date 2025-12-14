@@ -1,10 +1,11 @@
 class Enemy:
-    def __init__(self, health: int, max_health: int, heavy_attack: int, light_attack: int, defense: int):
+    def __init__(self, health: int, max_health: int, heavy_attack: int, light_attack: int, defense: int, stats: list):
         self.health = health
         self.max_health = max_health
         self.heavy_attack = heavy_attack
         self.light_attack = light_attack
         self.defense = defense
+        self.stats = stats
 
     def attack(self, player, player_choice, enemy_choice):
         if enemy_choice == "1":
