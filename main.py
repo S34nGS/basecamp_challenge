@@ -19,12 +19,14 @@ from classes.weapon import Weapon
 from classes.saves import Saves
 
 # Player
-player = Player(100, 100, 20, 5, 15, 15, 15, 30, 30, [], [5, 5, 5, 5], 6)
+player = Player(100, 100, 20, 5, 15, 15, 15, 30, 30, [], [1, 1, 1, 1, 1, 1], 6)
 
 # Enemies
-enemy1 = Enemy(100, 100, 20, 5, 30, [6, 6, 6, 6])
-enemy2 = Enemy(150, 150, 30, 10, 50, [7, 7, 7, 7])
-enemies = [enemy1, enemy2]
+enemy1 = Enemy(100, 100, 20, 5, 30, [3, 3, 3, 3])
+enemy2 = Enemy(150, 150, 30, 10, 50, [5, 5, 5, 5])
+enemy3 = Enemy(90, 90, 15, 5, 50, [6, 6, 3, 2])
+enemy4 = Enemy(200, 200, 40, 20, 50, [10, 10, 10, 10])
+enemies = [enemy1, enemy2, enemy3, enemy4]
 
 # Weapons
 knife = Weapon("Knife", 50, 5, 5)
@@ -43,6 +45,7 @@ def main():
     playing = False
     new_or_load = False
     load_menu = False
+    save_menu = False
     battle = False
     story_step = 0
     enemy_step = 0
@@ -98,16 +101,42 @@ def main():
 
         # Load menu loop
         while load_menu:
-            load_file = load_file_menu()
-            if load_file == "file1":
-                ...
-            elif load_file == "file2":
-                ...
-            elif load_file == "file3":
-                ...
-            elif load_file == "back":
+            load_file = load_file_menu(player)
+            if load_file == "back":
                 new_or_load = True
                 load_menu = False
+            else:
+                file_name, file_data = load_file
+                if file_name == "file1":
+                    story_step = file_data["story_step"]
+                    enemy_step = file_data["enemy_step"]
+                    clear()
+                    playing = True
+                    load_menu = False
+                elif file_name == "file2":
+                    story_step = file_data["story_step"]
+                    enemy_step = file_data["enemy_step"]
+                    clear()
+                    playing = True
+                    load_menu = False
+                elif file_name == "file3":
+                    story_step = file_data["story_step"]
+                    enemy_step = file_data["enemy_step"]
+                    clear()
+                    playing = True
+                    load_menu = False
+
+        # Save menu loop
+        while save_menu:
+            save_file = save_file_menu(player, story_step, enemy_step)
+            if save_file == "back":
+                clear()
+                battle = True
+                save_menu = False
+            elif save_file == "saved":
+                clear()
+                battle = True
+                save_menu = False
 
         # Storyline loop
         while playing:
@@ -116,7 +145,7 @@ def main():
             if next == "":
                 clear()
                 story_step += 1
-                if story_step == 5 or story_step == 10:
+                if story_step == 5 or story_step == 10 or story_step == 18 or story_step == 24:
                     battle = True
                     playing = False
                 elif story_step == 8:
@@ -131,9 +160,6 @@ def main():
 
         # Battle loop
         while battle:
-            save_check = saves.want_to_save()
-            if save_check == "yes":
-                save_file_menu()
             bm = battle_menu(player, enemies[enemy_step])
             if bm == "Win":
                 clear()
@@ -143,14 +169,37 @@ def main():
                 if next == "":
                     clear()
                     enemy_step += 1
+                    save_check = saves.want_to_save()
+                    if save_check == "yes":
+                        save_menu = True
+                        battle = False
                     playing = True
                     battle = False
                 else:
                     clear()
             elif bm == "Lose":
                 clear()
-                print("You died :(")
-                return
+                choice = saves.back_to_checkpoint()
+                if choice == "checkpoint":
+                    file_name, file_data = load_file_menu(player)
+                    if file_name == "file1":
+                        story_step = file_data["story_step"]
+                        enemy_step = file_data["enemy_step"]
+                        battle = False
+                        playing = True
+                    elif file_name == "file2":
+                        story_step = file_data["story_step"]
+                        enemy_step = file_data["enemy_step"]
+                        battle = False
+                        playing = True
+                    elif file_name == "file3":
+                        story_step = file_data["story_step"]
+                        enemy_step = file_data["enemy_step"]
+                        battle = False
+                        playing = True
+                elif choice == "exit":
+                    main_menu = True
+                    battle = False
 
 
 if __name__ == "__main__":

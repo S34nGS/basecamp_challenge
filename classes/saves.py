@@ -18,6 +18,7 @@ class Saves:
         save_file = json.dumps(save_data, indent=4)
         with open(file, "w") as f:
             f.write(save_file)
+            return "done"
 
     def want_to_save(self):
         menu_items = ("Yes", "No")
@@ -38,3 +39,13 @@ class Saves:
                 return "yes"
             elif menu_items[selected] == "No":
                 return "no"
+
+    def back_to_checkpoint(self):
+        menu_items = ("Checkpoint", "Exit")
+        menu_text = "You died :(\nDo you want to go back to a checkpoint or exit the game?"
+        while True:
+            selected = selection_menu(menu_items, menu_text)
+            if menu_items[selected] == "Checkpoint":
+                return "checkpoint"
+            elif menu_items[selected] == "Exit":
+                return "exit"

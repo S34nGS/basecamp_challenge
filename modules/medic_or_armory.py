@@ -5,7 +5,7 @@ import textwrap
 def medic_or_armory(decision, player, rock, shuriken, knife):
     if decision == "left":
         clear()
-        player.health = 100
+        player.health = player.max_health
         print("You have regained your full health")
     elif decision == "right":
         clear()
