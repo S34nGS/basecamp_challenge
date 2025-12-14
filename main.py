@@ -22,8 +22,8 @@ from classes.saves import Saves
 player = Player(100, 100, 20, 5, 15, 15, 15, 30, 30, [], [1, 1, 1, 1, 1, 1], 6)
 
 # Enemies
-enemy1 = Enemy(100, 100, 20, 5, 30, [3, 3, 3, 3])
-enemy2 = Enemy(150, 150, 30, 10, 50, [5, 5, 5, 5])
+enemy1 = Enemy(100, 100, 20, 5, 30, [1, 1, 1, 1])
+enemy2 = Enemy(150, 150, 30, 10, 50, [3, 3, 3, 3])
 enemy3 = Enemy(90, 90, 15, 5, 50, [6, 6, 3, 2])
 enemy4 = Enemy(200, 200, 40, 20, 50, [10, 10, 10, 10])
 enemies = [enemy1, enemy2, enemy3, enemy4]
@@ -167,6 +167,51 @@ def main():
                 clear()
                 print("You have beaten the enemy")
                 print("")
+                next = input("Press enter to continue")
+                if next == "":
+                    clear()
+                    enemy_step += 1
+                    save_check = saves.want_to_save()
+                    if save_check == "yes":
+                        save_menu = True
+                        battle = False
+                    playing = True
+                    battle = False
+                else:
+                    clear()
+            elif bm == "befriended":
+                clear()
+                print("You have befriended the enemy!")
+                next = input("Press enter to continue")
+                if next == "":
+                    clear()
+                    enemy_step += 1
+                    save_check = saves.want_to_save()
+                    if save_check == "yes":
+                        save_menu = True
+                        battle = False
+                    playing = True
+                    battle = False
+                else:
+                    clear()
+            elif bm == "lied":
+                clear()
+                print("You successfully lied to the enemy!")
+                next = input("Press enter to continue")
+                if next == "":
+                    clear()
+                    enemy_step += 1
+                    save_check = saves.want_to_save()
+                    if save_check == "yes":
+                        save_menu = True
+                        battle = False
+                    playing = True
+                    battle = False
+                else:
+                    clear()
+            elif bm == "charmed":
+                clear()
+                print("You charmed the enemy!")
                 next = input("Press enter to continue")
                 if next == "":
                     clear()

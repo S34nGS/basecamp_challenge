@@ -11,15 +11,15 @@ def selection_menu(menu: tuple[str], text_to_print: Optional[str] = None) -> int
             print(text_to_print)
         longest = len(max(menu, key=len))
 
-        print(f"╔{'═' * (longest + 4)}╗")
+        print(f"╭{'─' * (longest + 4)}╮")
 
         for index in range(len(menu)):
             if index == selected:
-                print(f"║> {menu[index]} {' ' * (longest - len(menu[index]))}<║")
+                print(f"│> {menu[index]} {' ' * (longest - len(menu[index]))}<│")
             else:
-                print(f"║  {menu[index]} {' ' * (longest - len(menu[index]))} ║")
+                print(f"│  {menu[index]} {' ' * (longest - len(menu[index]))} │")
 
-        print(f"╚{'═' * (longest + 4)}╝")
+        print(f"╰{'─' * (longest + 4)}╯")
         pressed = readkey()
 
         if pressed == key.DOWN and selected < len(menu) - 1:

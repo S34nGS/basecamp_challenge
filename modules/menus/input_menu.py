@@ -1,5 +1,6 @@
 from modules.clear import clear
 from readchar import key, readkey
+import textwrap
 
 
 def input_menu(player):
@@ -12,16 +13,21 @@ def input_menu(player):
         name = ""
         while True:
             clear()
+            print(textwrap.dedent("""
+                ----------------------------
+                        PRISON ESCAPE
+                ----------------------------
+            """))
             print("Enter your name")
             print(f"Name: {name}")
             longest = len(max(menu, key=len))
-            print(f"╔{'═' * (longest + 4)}╗")
+            print(f"╭{'─' * (longest + 4)}╮")
             for index in range(len(menu)):
                 if index == selected:
-                    print(f"║> {menu[index]} {' ' * (longest - len(menu[index]))}<║")
+                    print(f"│> {menu[index]} {' ' * (longest - len(menu[index]))}<│")
                 else:
-                    print(f"║  {menu[index]} {' ' * (longest - len(menu[index]))} ║")
-            print(f"╚{'═' * (longest + 4)}╝")
+                    print(f"│  {menu[index]} {' ' * (longest - len(menu[index]))} │")
+            print(f"╰{'─' * (longest + 4)}╯")
 
             pressed = readkey()
 

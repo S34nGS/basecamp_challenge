@@ -1,0 +1,18 @@
+{
+    "health": 45,
+    "max_health": 115,
+    "stats": [
+        3,
+        2,
+        2,
+        1,
+        1,
+        3
+    ],
+    "stat_points": 0,
+    "name": "Giulia",
+    "heavy_attack_pp": 7,
+    "light_attack_pp": 29,
+    "story_step": 5,
+    "enemy_step": 1
+}

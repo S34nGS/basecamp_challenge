@@ -10,7 +10,7 @@ def menu():
     )
 
     while True:
-        menu_text = textwrap.dedent(f"""
+        menu_text = textwrap.dedent("""
             ----------------------------
                     PRISON ESCAPE
             ----------------------------

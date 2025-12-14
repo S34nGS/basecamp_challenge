@@ -11,7 +11,6 @@ class Negotiation:
     def menu(player, enemy):
         menu_items = (
             "Befriend",
-            "Buy out",
             "Lie",
             "Charm",
             "Back"
@@ -23,15 +22,19 @@ class Negotiation:
             """)
             selected = selection_menu(menu_items, menu_text)
             if menu_items[selected] == "Befriend":
-                if player.stats[1] > (enemy.stats[1] // 2 + 3):
-                    ...
+                if player.stats[3] > (enemy.stats[1] // 2 + 3):
+                    return "befriended"
                 else:
                     return "not possible"
-            elif menu_items[selected] == "Buy out":
-                ...
             elif menu_items[selected] == "Lie":
-                ...
+                if (player.stats[2] + player.stats[4]) // 2 > (enemy.stats[0] + enemy.stats[2]) // 2:
+                    return "lied"
+                else:
+                    return "not possible"
             elif menu_items[selected] == "Charm":
-                ...
+                if (player.stats[2] + player.stats[3]) // 2 > (enemy.stats[0] + enemy.stats[1]) // 2:
+                    return "charmed"
+                else:
+                    return "not possible"
             elif menu_items[selected] == "Back":
                 break

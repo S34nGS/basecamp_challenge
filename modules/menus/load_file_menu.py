@@ -10,12 +10,15 @@ def load_file_menu(player: Player):
     file2 = saves.read_save_file("saves/file2.json")
     file3 = saves.read_save_file("saves/file3.json")
     menu_items = (
-        f"{'file1' if file1 is not None else 'Empty'}",
-        f"{'file2' if file2 is not None else 'Empty'}",
-        f"{'file3' if file3 is not None else 'Empty'}",
+        f"{file1['name'] if file1 is not None else 'Empty'}",
+        f"{file2['name'] if file2 is not None else 'Empty'}",
+        f"{file3['name'] if file3 is not None else 'Empty'}",
         "Back"
     )
     menu_text = textwrap.dedent("""
+        ----------------------------
+                PRISON ESCAPE
+        ----------------------------
         Pick a save file
     """)
     while True:

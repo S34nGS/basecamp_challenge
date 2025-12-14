@@ -18,6 +18,9 @@ def stat_menu(player: Player):
 
     while True:
         menu_text = textwrap.dedent(f"""
+        ----------------------------
+                PRISON ESCAPE
+        ----------------------------
         Allocate stat points
         Available: {player.stat_points}
         """)

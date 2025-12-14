@@ -38,7 +38,17 @@ def battle_menu(player: Player, enemy: Enemy):
 
         move = battle_move(player, enemy, selected, enemy_choice)
         if move == "negotiation":
-            Negotiation.menu(player, enemy)
+            negotiation_result = Negotiation.menu(player, enemy)
+            if negotiation_result == "befriended":
+                return "befriended"
+            elif negotiation_result == "lied":
+                return "lied"
+            elif negotiation_result == "charmed":
+                return "charmed"
+            elif negotiation_result == "not possible":
+                clear()
+                print("Your stats are not high enough!")
+                input("Press enter to continue...")
             continue
 
         if player.health <= 0:
